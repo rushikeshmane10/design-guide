@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageHeader } from "@/components/PageHeader";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ExternalLink, Twitter, Linkedin } from "lucide-react";
+import { Check, ExternalLink, AtSign, Globe } from "lucide-react";
 
 interface ConnectionCard {
   id: string;
