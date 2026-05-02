@@ -28,14 +28,14 @@ function ConnectionsPage() {
     {
       id: "twitter",
       name: "Twitter / X",
-      icon: Twitter,
+      icon: AtSign,
       connected: false,
       description: "Connect your Twitter account to publish posts directly.",
     },
     {
       id: "linkedin",
       name: "LinkedIn",
-      icon: Linkedin,
+      icon: Globe,
       connected: false,
       description: "Connect your LinkedIn account to share professional content.",
     },
