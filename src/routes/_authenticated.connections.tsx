@@ -7,7 +7,7 @@ import { Check, ExternalLink, AtSign, Globe } from "lucide-react";
 interface ConnectionCard {
   id: string;
   name: string;
-  icon: typeof Twitter;
+  icon: typeof AtSign;
   connected: boolean;
   description: string;
 }
