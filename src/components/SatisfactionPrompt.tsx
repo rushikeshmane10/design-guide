@@ -30,11 +30,11 @@ export function SatisfactionPrompt({
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
+          initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-          className="rounded-xl border border-border bg-card p-4"
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="rounded-lg border border-border bg-card p-4"
         >
           <p className="text-sm font-medium text-card-foreground">
             How close was this to what you wanted?
@@ -44,9 +44,9 @@ export function SatisfactionPrompt({
               <button
                 key={opt.value}
                 onClick={() => handleClick(opt.value)}
-                className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
+                className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-150 ${
                   selected === opt.value
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-foreground text-background"
                     : "border border-border text-muted-foreground hover:border-foreground/20 hover:text-foreground"
                 }`}
               >

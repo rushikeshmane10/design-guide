@@ -8,11 +8,11 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, children }: PageHeaderProps) {
   return (
-    <header className="flex h-14 items-center justify-between border-b border-border px-6">
-      <h1 className="font-heading text-lg font-semibold tracking-tight">
+    <header className="flex h-12 items-center justify-between border-b border-border px-8 lg:px-12">
+      <h1 className="font-heading text-[15px] font-semibold tracking-tight">
         {title}
       </h1>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         {children}
         <ThemeToggle />
       </div>

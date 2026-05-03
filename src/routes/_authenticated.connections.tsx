@@ -61,44 +61,39 @@ function ConnectionsPage() {
     <>
       <PageHeader title="Social connections" />
       <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-2xl px-6 py-8">
+        <div className="px-8 py-8 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.3 }}
           >
-            <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
+            <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Connect your social accounts to publish content directly. We use OAuth
               to securely connect — we never store your password.
             </p>
 
-            <div className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {connections.map((conn, i) => (
                 <motion.div
                   key={conn.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.35 }}
-                  className="rounded-xl border border-border bg-card p-5"
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  className="group rounded-lg border border-border bg-card p-5 transition-colors duration-150 hover:border-foreground/12"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent">
-                      <conn.icon className="h-5 w-5 text-accent-foreground" />
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-surface">
+                      <conn.icon className="h-4 w-4 text-muted-foreground" />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <h3 className="text-sm font-medium text-card-foreground">
                           {conn.name}
                         </h3>
                         {conn.connected && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-surface px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">
                             <Check className="h-3 w-3" />
                             Connected
-                          </span>
-                        )}
-                        {!conn.connected && (
-                          <span className="text-xs text-muted-foreground">
-                            Not connected
                           </span>
                         )}
                       </div>
@@ -108,21 +103,21 @@ function ConnectionsPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center gap-3">
+                  <div className="mt-4 flex items-center gap-2">
                     <button
                       onClick={() => handleConnect(conn.id)}
                       disabled={conn.connected || loading === conn.id}
-                      className="flex h-8 items-center gap-2 rounded-lg bg-primary px-4 text-xs font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 disabled:opacity-40"
+                      className="flex h-8 items-center gap-1.5 rounded-md bg-primary px-3.5 text-xs font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
                     >
                       <ExternalLink className="h-3 w-3" />
                       {loading === conn.id
                         ? "Connecting…"
-                        : `Connect ${conn.name.split(" ")[0]}`}
+                        : `Connect`}
                     </button>
                     <button
                       onClick={() => handleVerify(conn.id)}
                       disabled={!conn.connected || loading === `verify-${conn.id}`}
-                      className="flex h-8 items-center rounded-lg border border-border px-4 text-xs font-medium text-foreground transition-all duration-200 hover:bg-accent disabled:opacity-40"
+                      className="flex h-8 items-center rounded-md border border-border px-3.5 text-xs font-medium text-foreground transition-all duration-150 hover:bg-accent disabled:opacity-40"
                     >
                       {loading === `verify-${conn.id}` ? "Verifying…" : "Verify"}
                     </button>
@@ -130,13 +125,6 @@ function ConnectionsPage() {
                 </motion.div>
               ))}
             </div>
-
-            <button
-              onClick={() => navigate({ to: "/" })}
-              className="mt-8 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              ← Back to generator
-            </button>
           </motion.div>
         </div>
       </div>

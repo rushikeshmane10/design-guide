@@ -40,7 +40,7 @@ export function TopicForm({
   const canGenerate = topic.trim() && tones.length > 0 && !generating;
 
   return (
-    <div className="space-y-5">
+    <div className="rounded-lg border border-border bg-card p-6 space-y-5">
       {/* Topic */}
       <div>
         <label className="mb-2 block text-sm font-medium text-foreground">
@@ -51,7 +51,7 @@ export function TopicForm({
           onChange={(e) => setTopic(e.target.value)}
           placeholder="Share what's on your mind — a thought, an update, an idea…"
           rows={3}
-          className="w-full resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30"
+          className="w-full resize-none rounded-md border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20"
         />
       </div>
 
@@ -68,10 +68,10 @@ export function TopicForm({
                 key={tone}
                 onClick={() => toggleTone(tone)}
                 whileTap={{ scale: 0.97 }}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-medium capitalize transition-all duration-200 ${
+                className={`rounded-md px-3 py-1.5 text-xs font-medium capitalize transition-all duration-150 ${
                   selected
-                    ? "bg-primary text-primary-foreground"
-                    : "border border-border bg-card text-muted-foreground hover:border-foreground/20 hover:text-foreground"
+                    ? "bg-foreground text-background"
+                    : "border border-border text-muted-foreground hover:border-foreground/20 hover:text-foreground"
                 }`}
               >
                 {tone}
@@ -101,7 +101,7 @@ export function TopicForm({
           <select
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30"
+            className="h-9 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20"
           >
             {LLM_MODELS.map((m) => (
               <option key={m.value} value={m.value}>
@@ -113,9 +113,9 @@ export function TopicForm({
         <button
           onClick={() => onGenerate(topic, tones, model)}
           disabled={!canGenerate}
-          className="flex h-10 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 disabled:opacity-40"
+          className="flex h-9 items-center gap-2 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
         >
-          {generating ? "Generating…" : "Generate →"}
+          {generating ? "Generating…" : "Generate"}
         </button>
       </div>
     </div>
