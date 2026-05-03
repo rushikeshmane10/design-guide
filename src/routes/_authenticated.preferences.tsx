@@ -41,7 +41,6 @@ function PreferencesPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Load saved preferences
     const stored = localStorage.getItem("preferences");
     if (stored) {
       setValues(JSON.parse(stored));
@@ -63,25 +62,25 @@ function PreferencesPage() {
     <>
       <PageHeader title="Preferences" />
       <div className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-2xl px-6 py-8">
+        <div className="px-8 py-8 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.3 }}
           >
-            <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
+            <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Tell us a bit about yourself. Your answers help shape the tone, style,
               and relevance of every post we generate for you.
             </p>
 
-            <div className="space-y-6">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {preferenceQuestions.map((q, i) => (
                 <motion.div
                   key={q.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.35 }}
-                  className="rounded-xl border border-border bg-card p-5"
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  className="rounded-lg border border-border bg-card p-5"
                 >
                   <label className="block text-sm font-medium text-card-foreground">
                     {q.label}
@@ -96,17 +95,17 @@ function PreferencesPage() {
                     }
                     placeholder={q.placeholder}
                     rows={2}
-                    className="mt-3 w-full resize-none rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30"
+                    className="mt-3 w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20"
                   />
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-3">
               <button
                 onClick={handleSave}
                 disabled={!allFilled || loading}
-                className="flex h-10 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 disabled:opacity-40"
+                className="flex h-9 items-center gap-2 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
               >
                 {saved && <Check className="h-4 w-4" />}
                 {loading ? "Saving…" : saved ? "Saved" : "Save"}

@@ -47,46 +47,51 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
+  --color-surface-elevated: var(--surface-elevated);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.625rem;
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 
-  /* Light theme — Stripe-inspired */
+  /* Light theme — Stripe-inspired: white base, subtle gray system, controlled accents */
   --background: oklch(1 0 0);               /* #FFFFFF */
   --foreground: oklch(0.145 0.005 0);        /* #0A0A0A */
   --card: oklch(1 0 0);                      /* #FFFFFF */
-  --card-foreground: oklch(0.145 0.005 0);   /* #0A0A0A */
+  --card-foreground: oklch(0.145 0.005 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0.005 0);
-  --primary: oklch(0.488 0.217 277);         /* #635BFF — Stripe indigo */
-  --primary-foreground: oklch(1 0 0);        /* White on primary */
-  --secondary: oklch(0.975 0.005 250);       /* #F7F9FC */
+
+  /* Primary: deep navy like Stripe's #0A2540, NOT purple */
+  --primary: oklch(0.22 0.04 250);           /* ~#0A2540 deep navy */
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.978 0.004 250);       /* #F6F9FC */
   --secondary-foreground: oklch(0.145 0.005 0);
-  --muted: oklch(0.975 0.005 250);           /* #F7F9FC */
-  --muted-foreground: oklch(0.555 0.01 250); /* #6B7280 */
-  --accent: oklch(0.975 0.005 250);
+  --muted: oklch(0.978 0.004 250);           /* #F6F9FC */
+  --muted-foreground: oklch(0.5 0.015 250);  /* #425466 */
+  --accent: oklch(0.978 0.004 250);          /* #F6F9FC */
   --accent-foreground: oklch(0.145 0.005 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.925 0.008 250);          /* #E6EAF0 */
-  --input: oklch(0.925 0.008 250);
-  --ring: oklch(0.488 0.217 277);            /* Primary ring */
-  --surface: oklch(0.975 0.005 250);         /* #F7F9FC */
+  --border: oklch(0.93 0.006 250);           /* #E6EBF1 */
+  --input: oklch(0.93 0.006 250);
+  --ring: oklch(0.488 0.217 277);            /* #635BFF accent for focus rings only */
+  --surface: oklch(0.978 0.004 250);         /* #F6F9FC */
   --surface-foreground: oklch(0.145 0.005 0);
+  --surface-elevated: oklch(1 0 0);          /* White elevated cards */
 
   /* Sidebar — light */
   --sidebar: oklch(0.985 0.003 250);
   --sidebar-foreground: oklch(0.145 0.005 0);
-  --sidebar-primary: oklch(0.488 0.217 277);
+  --sidebar-primary: oklch(0.22 0.04 250);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.96 0.005 250);
   --sidebar-accent-foreground: oklch(0.145 0.005 0);
-  --sidebar-border: oklch(0.925 0.008 250);
+  --sidebar-border: oklch(0.93 0.006 250);
   --sidebar-ring: oklch(0.488 0.217 277);
 
   /* Chart colors */
@@ -98,36 +103,37 @@
 }
 
 .dark {
-  /* Dark theme — Vercel Marketplace-inspired */
-  --background: oklch(0.145 0.005 0);        /* #0A0A0A */
+  /* Dark theme — Vercel Marketplace: layered blacks, no purple */
+  --background: oklch(0.145 0 0);            /* #0A0A0A */
   --foreground: oklch(1 0 0);                /* #FFFFFF */
-  --card: oklch(0.195 0.005 0);              /* #1C1C1C */
+  --card: oklch(0.18 0 0);                   /* #171717 */
   --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.175 0.005 0);           /* #171717 */
+  --popover: oklch(0.18 0 0);               /* #171717 */
   --popover-foreground: oklch(1 0 0);
-  --primary: oklch(0.623 0.16 250);          /* #3B82F6 — soft blue */
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.175 0.005 0);         /* #171717 */
-  --secondary-foreground: oklch(0.92 0.005 0);
-  --muted: oklch(0.175 0.005 0);
-  --muted-foreground: oklch(0.58 0.01 260);  /* #71717A */
-  --accent: oklch(0.195 0.005 0);
-  --accent-foreground: oklch(0.92 0.005 0);
+  --primary: oklch(1 0 0);                   /* White buttons on dark — Vercel style */
+  --primary-foreground: oklch(0.145 0 0);    /* Dark text on white buttons */
+  --secondary: oklch(0.18 0 0);              /* #171717 */
+  --secondary-foreground: oklch(0.92 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.58 0 0);       /* #71717A */
+  --accent: oklch(0.195 0 0);               /* #1C1C1C */
+  --accent-foreground: oklch(0.92 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(1 0 0 / 6%);              /* rgba(255,255,255,0.06) */
   --input: oklch(1 0 0 / 8%);
-  --ring: oklch(0.623 0.16 250);
-  --surface: oklch(0.16 0.005 0);            /* #111111 */
+  --ring: oklch(0.623 0.16 250);             /* #3B82F6 focus ring only */
+  --surface: oklch(0.16 0 0);               /* #111111 */
   --surface-foreground: oklch(1 0 0);
+  --surface-elevated: oklch(0.195 0 0);     /* #1C1C1C */
 
   /* Sidebar — dark */
-  --sidebar: oklch(0.16 0.005 0);            /* #111111 */
-  --sidebar-foreground: oklch(0.78 0.01 260); /* #A1A1AA */
-  --sidebar-primary: oklch(0.623 0.16 250);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.195 0.005 0);
-  --sidebar-accent-foreground: oklch(0.92 0.005 0);
+  --sidebar: oklch(0.16 0 0);               /* #111111 */
+  --sidebar-foreground: oklch(0.68 0 0);    /* #A1A1AA */
+  --sidebar-primary: oklch(1 0 0);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.195 0 0);
+  --sidebar-accent-foreground: oklch(0.92 0 0);
   --sidebar-border: oklch(1 0 0 / 6%);
   --sidebar-ring: oklch(0.623 0.16 250);
 

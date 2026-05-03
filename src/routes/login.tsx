@@ -39,29 +39,41 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen bg-background">
       {/* Theme toggle — top right */}
-      <div className="fixed right-4 top-4">
+      <div className="fixed right-4 top-4 z-10">
         <ThemeToggle />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-full max-w-sm"
-      >
-        {/* Wordmark */}
-        <div className="mb-10 text-center">
-          <h1 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+      {/* Left panel — branding */}
+      <div className="hidden w-[45%] items-center justify-center bg-surface lg:flex">
+        <div className="max-w-sm px-12">
+          <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
             Social AI
-          </h1>
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Generate, refine, and publish content that connects — powered by AI that understands your voice.
+          </p>
         </div>
+      </div>
 
-        {/* Card */}
-        <div className="rounded-xl border border-border bg-card p-8">
+      {/* Right panel — form */}
+      <div className="flex flex-1 items-center justify-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="w-full max-w-sm"
+        >
+          {/* Mobile wordmark */}
+          <div className="mb-8 lg:hidden">
+            <h1 className="font-heading text-xl font-semibold tracking-tight text-foreground">
+              Social AI
+            </h1>
+          </div>
+
           <div className="mb-6">
-            <h2 className="font-heading text-lg font-semibold text-card-foreground">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
               Welcome back
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -71,12 +83,12 @@ function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
-              <div className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
+              <div className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
                 {error}
               </div>
             )}
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <label htmlFor="email" className="text-sm font-medium text-foreground">
                 Email
               </label>
@@ -87,11 +99,11 @@ function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30"
+                className="flex h-9 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <label htmlFor="password" className="text-sm font-medium text-foreground">
                 Password
               </label>
@@ -102,14 +114,14 @@ function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30"
+                className="flex h-9 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground/50 transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="flex h-10 w-full items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 disabled:opacity-50"
+              className="flex h-9 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-50"
             >
               {loading ? "Signing in…" : "Sign in"}
             </button>
@@ -123,8 +135,8 @@ function LoginPage() {
               Forgot password?
             </button>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }

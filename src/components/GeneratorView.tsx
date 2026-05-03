@@ -1,4 +1,3 @@
-import { AppNavRail } from "@/components/AppNavRail";
 import { PageHeader } from "@/components/PageHeader";
 import { TopicForm, type Tone } from "@/components/TopicForm";
 import { VariationPickerModal, type Variation } from "@/components/VariationPickerModal";
@@ -92,26 +91,27 @@ export function GeneratorView() {
   };
 
   return (
-    <div className="flex min-h-screen w-full">
-      <AppNavRail />
-      <main className="flex flex-1 flex-col overflow-hidden">
-        <PageHeader title="Post to X">
-          <button
-            onClick={handleReset}
-            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs text-muted-foreground transition-colors duration-200 hover:bg-accent hover:text-foreground"
-          >
-            <RotateCcw className="h-3 w-3" />
-            Reset
-          </button>
-        </PageHeader>
+    <>
+      <PageHeader title="Post to X">
+        <button
+          onClick={handleReset}
+          className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:bg-accent hover:text-foreground"
+        >
+          <RotateCcw className="h-3 w-3" />
+          Reset
+        </button>
+      </PageHeader>
 
-        <div className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-2xl px-6 py-8">
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-8 py-8 lg:px-12">
+          {/* Two-column layout: form left, preview right */}
+          <div className="grid gap-8 lg:grid-cols-5">
+            {/* Left column — compose */}
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="space-y-6"
+              transition={{ duration: 0.3 }}
+              className="space-y-6 lg:col-span-3"
             >
               {status && (
                 <StatusBanner
@@ -139,9 +139,9 @@ export function GeneratorView() {
 
               {draft && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.25 }}
                 >
                   <label className="mb-2 block text-sm font-medium text-foreground">
                     Your post
@@ -152,44 +152,54 @@ export function GeneratorView() {
                     placeholder="Write your post…"
                     rows={4}
                     disabled={posting}
-                    className="w-full resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-200 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/30 disabled:opacity-50"
+                    className="w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 transition-colors duration-150 focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring/20 disabled:opacity-50"
                   />
                 </motion.div>
               )}
+            </motion.div>
 
-              {draft && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.05 }}
-                >
+            {/* Right column — preview */}
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
+              className="lg:col-span-2"
+            >
+              {draft ? (
+                <div className="sticky top-8">
                   <TweetPreview
                     text={draft}
                     actions={
                       <button
                         onClick={handlePost}
                         disabled={!selectedVariation || posting}
-                        className="flex h-10 w-full items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 disabled:opacity-40"
+                        className="flex h-9 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
                       >
-                        {posting ? "Posting…" : "Post to X →"}
+                        {posting ? "Posting…" : "Post to X"}
                       </button>
                     }
                   />
-                </motion.div>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-border bg-surface p-6">
+                  <p className="text-sm text-muted-foreground">
+                    Your post preview will appear here once you generate content.
+                  </p>
+                </div>
               )}
             </motion.div>
           </div>
         </div>
+      </div>
 
-        <VariationPickerModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          variations={variations}
-          loading={modalLoading}
-          onPick={handlePick}
-          onRegenerate={handleRegenerate}
-        />
-      </main>
-    </div>
+      <VariationPickerModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        variations={variations}
+        loading={modalLoading}
+        onPick={handlePick}
+        onRegenerate={handleRegenerate}
+      />
+    </>
   );
 }
