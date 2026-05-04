@@ -34,9 +34,9 @@ export function SatisfactionPrompt({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.2 }}
-          className="rounded-lg border border-border bg-card p-4"
+          className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-card)]"
         >
-          <p className="text-sm font-medium text-card-foreground">
+          <p className="text-sm font-semibold text-card-foreground">
             How close was this to what you wanted?
           </p>
           <div className="mt-3 flex items-center gap-2">
@@ -44,10 +44,10 @@ export function SatisfactionPrompt({
               <button
                 key={opt.value}
                 onClick={() => handleClick(opt.value)}
-                className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-150 ${
+                className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-150 ${
                   selected === opt.value
-                    ? "bg-foreground text-background"
-                    : "border border-border text-muted-foreground hover:border-foreground/20 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground shadow-[var(--shadow-sm)]"
+                    : "border border-border bg-background text-muted-foreground shadow-[var(--shadow-sm)] hover:border-foreground/15 hover:text-foreground"
                 }`}
               >
                 {opt.label}
