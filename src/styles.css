@@ -57,7 +57,7 @@
   --font-heading: "Space Grotesk", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 
-  /* Light theme — Stripe-inspired: white base, subtle gray system, controlled accents */
+  /* Light theme — Premium gradient palette: orange→pink→purple, used subtly */
   --background: oklch(1 0 0);               /* #FFFFFF */
   --foreground: oklch(0.145 0.005 0);        /* #0A0A0A */
   --card: oklch(1 0 0);                      /* #FFFFFF */
@@ -65,34 +65,39 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0.005 0);
 
-  /* Primary: deep navy like Stripe's #0A2540, NOT purple */
-  --primary: oklch(0.22 0.04 250);           /* ~#0A2540 deep navy */
+  /* Primary: violet #5A3FFF — the deepest gradient anchor, premium not loud */
+  --primary: oklch(0.48 0.25 280);           /* #5A3FFF violet */
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.978 0.004 250);       /* #F6F9FC */
+  --secondary: oklch(0.97 0.012 270);        /* #EEF2FF soft blue tint */
   --secondary-foreground: oklch(0.145 0.005 0);
-  --muted: oklch(0.978 0.004 250);           /* #F6F9FC */
-  --muted-foreground: oklch(0.5 0.015 250);  /* #425466 */
-  --accent: oklch(0.978 0.004 250);          /* #F6F9FC */
+  --muted: oklch(0.975 0.005 250);           /* #F5F7FA light gray */
+  --muted-foreground: oklch(0.55 0.014 250); /* #6B7280 */
+  --accent: oklch(0.97 0.012 270);           /* #EEF2FF */
   --accent-foreground: oklch(0.145 0.005 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.93 0.006 250);           /* #E6EBF1 */
-  --input: oklch(0.93 0.006 250);
-  --ring: oklch(0.488 0.217 277);            /* #635BFF accent for focus rings only */
-  --surface: oklch(0.978 0.004 250);         /* #F6F9FC */
+  --border: oklch(0.92 0.012 270);           /* subtle blue-violet tint border */
+  --input: oklch(0.92 0.012 270);
+  --ring: oklch(0.55 0.22 285);              /* #7B61FF purple for focus rings */
+  --surface: oklch(0.975 0.005 250);         /* #F5F7FA */
   --surface-foreground: oklch(0.145 0.005 0);
-  --surface-elevated: oklch(1 0 0);          /* White elevated cards */
+  --surface-elevated: oklch(1 0 0);
+
+  /* Gradient tokens for components */
+  --gradient-primary: linear-gradient(135deg, #FF7A18, #FF4D8D, #7B61FF);
+  --gradient-subtle: linear-gradient(135deg, #EEF2FF, #F5F7FA);
+  --gradient-accent: linear-gradient(135deg, #7B61FF, #5A3FFF);
 
   /* Sidebar — light */
-  --sidebar: oklch(0.985 0.003 250);
+  --sidebar: oklch(0.985 0.008 270);
   --sidebar-foreground: oklch(0.145 0.005 0);
-  --sidebar-primary: oklch(0.22 0.04 250);
+  --sidebar-primary: oklch(0.48 0.25 280);   /* #5A3FFF */
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.96 0.005 250);
+  --sidebar-accent: oklch(0.97 0.012 270);
   --sidebar-accent-foreground: oklch(0.145 0.005 0);
-  --sidebar-border: oklch(0.93 0.006 250);
-  --sidebar-ring: oklch(0.488 0.217 277);
+  --sidebar-border: oklch(0.92 0.012 270);
+  --sidebar-ring: oklch(0.55 0.22 285);
 
   /* Chart colors */
   --chart-1: oklch(0.488 0.217 277);
