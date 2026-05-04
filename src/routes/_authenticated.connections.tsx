@@ -79,7 +79,7 @@ function ConnectionsPage() {
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.3 }}
-                  className="group rounded-lg border border-border bg-card p-5 transition-colors duration-150 hover:border-foreground/12"
+                  className="group rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-sm)] transition-all duration-150 hover:shadow-[var(--shadow-card)]"
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-md bg-surface">
@@ -107,7 +107,7 @@ function ConnectionsPage() {
                     <button
                       onClick={() => handleConnect(conn.id)}
                       disabled={conn.connected || loading === conn.id}
-                      className="flex h-8 items-center gap-1.5 rounded-md bg-primary px-3.5 text-xs font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
+                      className="flex h-8 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-xs font-semibold text-primary-foreground shadow-[var(--shadow-sm)] transition-all duration-150 hover:shadow-[var(--shadow-card)] hover:brightness-110 disabled:opacity-40"
                     >
                       <ExternalLink className="h-3 w-3" />
                       {loading === conn.id
@@ -117,7 +117,7 @@ function ConnectionsPage() {
                     <button
                       onClick={() => handleVerify(conn.id)}
                       disabled={!conn.connected || loading === `verify-${conn.id}`}
-                      className="flex h-8 items-center rounded-md border border-border px-3.5 text-xs font-medium text-foreground transition-all duration-150 hover:bg-accent disabled:opacity-40"
+                      className="flex h-8 items-center rounded-lg border border-border px-3.5 text-xs font-medium text-foreground shadow-[var(--shadow-sm)] transition-all duration-150 hover:bg-accent disabled:opacity-40"
                     >
                       {loading === `verify-${conn.id}` ? "Verifying…" : "Verify"}
                     </button>

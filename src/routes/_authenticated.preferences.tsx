@@ -80,7 +80,7 @@ function PreferencesPage() {
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.3 }}
-                  className="rounded-lg border border-border bg-card p-5"
+                  className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-sm)]"
                 >
                   <label className="block text-sm font-medium text-card-foreground">
                     {q.label}
@@ -105,7 +105,7 @@ function PreferencesPage() {
               <button
                 onClick={handleSave}
                 disabled={!allFilled || loading}
-                className="flex h-9 items-center gap-2 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-all duration-150 hover:opacity-90 disabled:opacity-40"
+                className="flex h-9 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-card)] transition-all duration-150 hover:shadow-[var(--shadow-elevated)] hover:brightness-110 disabled:opacity-40"
               >
                 {saved && <Check className="h-4 w-4" />}
                 {loading ? "Saving…" : saved ? "Saved" : "Save"}
