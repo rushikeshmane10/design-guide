@@ -113,9 +113,16 @@ export function TopicForm({
         <button
           onClick={() => onGenerate(topic, tones, model)}
           disabled={!canGenerate}
-          className="flex h-10 items-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-card)] transition-all duration-150 hover:shadow-[var(--shadow-elevated)] hover:brightness-110 disabled:opacity-40 disabled:shadow-none"
+          className="group relative flex h-10 items-center gap-2 overflow-hidden rounded-lg bg-[image:var(--gradient-primary)] px-6 text-sm font-semibold text-white shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-elevated)] hover:brightness-110 disabled:opacity-40 disabled:shadow-none"
+          style={{ backgroundSize: "200% 200%", backgroundPosition: "0% 50%" }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundPosition = "100% 50%")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundPosition = "0% 50%")}
         >
-          {generating ? "Generating…" : "Generate"}
+          <span className="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/20" />
+          <span className="relative flex items-center gap-2">
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+            {generating ? "Generating…" : "Generate"}
+          </span>
         </button>
       </div>
     </div>
