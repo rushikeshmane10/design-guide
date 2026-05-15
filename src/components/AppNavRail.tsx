@@ -15,10 +15,7 @@ export function AppNavRail() {
   const initial = user?.name?.charAt(0).toUpperCase() || "U";
 
   return (
-    <nav className="relative flex h-screen w-[240px] shrink-0 flex-col bg-sidebar py-5">
-      {/* Right edge gradient border */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-sidebar-border to-transparent" />
-
+    <nav className="relative my-3 ml-3 flex h-[calc(100vh-1.5rem)] w-[240px] shrink-0 flex-col overflow-hidden rounded-2xl border border-sidebar-border bg-sidebar py-5 shadow-[var(--shadow-card)]">
       {/* Decorative gradient glow at top */}
       <div className="pointer-events-none absolute -top-16 -left-8 h-44 w-44 rounded-full bg-[image:var(--gradient-mesh)] opacity-[0.10] blur-3xl dark:opacity-[0.18]" />
 
