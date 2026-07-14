@@ -63,10 +63,9 @@ function LoginPage() {
             <rect width="100%" height="100%" filter="url(#water-noise)" />
           </svg>
 
-          <span className="water-droplet" />
-          <span className="water-droplet water-droplet--2" />
           <span className="water-wave" />
           <span className="water-wave water-wave--2" />
+          <span className="water-wave water-wave--3" />
         </div>
 
         {/* Content overlay */}
