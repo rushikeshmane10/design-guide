@@ -51,20 +51,22 @@ function LoginPage() {
         <div className="absolute inset-0 bg-[image:var(--gradient-mesh)] opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
 
-        {/* Water ripple layer — subtle concentric waves from center */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          {/* Soft refractive highlight that gently breathes */}
-          <div
-            className="water-refract absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 35%, transparent 60%)",
-              mixBlendMode: "soft-light",
-            }}
-          />
-          <span className="water-ripple" />
-          <span className="water-ripple water-ripple--2" />
-          <span className="water-ripple water-ripple--3" />
+        {/* Water surface — droplet + traveling wave + organic shimmer */}
+        <div className="water-surface" aria-hidden="true">
+          {/* SVG turbulence noise used as an overlay to break the perfect
+              circular wavefront and add a liquid, refractive quality. */}
+          <svg className="water-shimmer" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <filter id="water-noise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
+              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#water-noise)" />
+          </svg>
+
+          <span className="water-droplet" />
+          <span className="water-droplet water-droplet--2" />
+          <span className="water-wave" />
+          <span className="water-wave water-wave--2" />
         </div>
 
         {/* Content overlay */}
