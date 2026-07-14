@@ -169,56 +169,110 @@
   --chart-5: oklch(0.7 0.2 330);
 }
 
-/* Premium water ripple — slow, organic, barely-there concentric waves */
-@keyframes water-ripple {
+/* Premium water surface wave — a droplet lands, energy propagates as a
+   soft peak+valley band across the gradient, then dissipates. No rings,
+   no outlines — just brightness modulation traveling outward. */
+@property --wave-r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes water-wave {
   0% {
-    transform: translate(-50%, -50%) scale(0);
+    --wave-r: 0%;
     opacity: 0;
-    border-width: 2px;
   }
-  8% {
-    opacity: 0.28;
+  6% { opacity: 0.9; }
+  /* droplet impact — a tiny bright dot */
+  10% {
+    --wave-r: 4%;
+    opacity: 1;
   }
-  55% {
-    opacity: 0.12;
-    border-width: 1.25px;
+  85% {
+    opacity: 0.35;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    --wave-r: 95%;
     opacity: 0;
-    border-width: 0.5px;
   }
 }
 
-@keyframes water-refract {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
-  50% { transform: translate(0.5%, -0.5%) scale(1.008); opacity: 0.5; }
+@keyframes water-droplet {
+  0%, 100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  2% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+  10% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
 }
 
-.water-ripple {
+@keyframes water-shimmer {
+  0%, 100% { transform: translate(0%, 0%); }
+  50% { transform: translate(1%, -0.8%); }
+}
+
+.water-surface {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 180%;
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: water-ripple 14s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
-  mix-blend-mode: overlay;
-  filter: blur(0.5px);
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.water-ripple--2 { animation-delay: 4.6s; }
-.water-ripple--3 { animation-delay: 9.2s; }
+/* The travelling wave: a wide, soft radial band with a bright peak and a
+   subtle darker trough behind it. Uses --wave-r to move the band outward. */
+.water-wave {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 0%,
+    transparent calc(var(--wave-r) - 14%),
+    rgba(255, 255, 255, 0.055) calc(var(--wave-r) - 6%),
+    rgba(255, 255, 255, 0.11) var(--wave-r),
+    rgba(255, 255, 255, 0.045) calc(var(--wave-r) + 6%),
+    rgba(0, 0, 0, 0.05) calc(var(--wave-r) + 12%),
+    transparent calc(var(--wave-r) + 22%),
+    transparent 100%
+  );
+  mix-blend-mode: soft-light;
+  filter: blur(3px);
+  animation: water-wave 13s cubic-bezier(0.16, 0.68, 0.32, 1) infinite;
+  will-change: --wave-r, opacity;
+}
 
-.water-refract {
-  animation: water-refract 12s ease-in-out infinite;
+.water-wave--2 {
+  animation-delay: 6.5s;
+  filter: blur(4px);
+  opacity: 0.85;
+}
+
+/* The droplet: a tiny bright point that "lands" right before each wave. */
+.water-droplet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.25) 45%, transparent 70%);
+  filter: blur(1px);
+  mix-blend-mode: screen;
+  animation: water-droplet 13s ease-out infinite;
   will-change: transform, opacity;
 }
+
+.water-droplet--2 { animation-delay: 6.5s; }
+
+/* Organic noise overlay — breaks up the perfect-circle look and adds a
+   liquid shimmer as the wave passes. */
+.water-shimmer {
+  position: absolute;
+  inset: -6%;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  animation: water-shimmer 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+
 
 @layer base {
   * {
