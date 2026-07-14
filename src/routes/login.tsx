@@ -50,7 +50,23 @@ function LoginPage() {
         {/* Gradient mesh background */}
         <div className="absolute inset-0 bg-[image:var(--gradient-mesh)] opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
-        
+
+        {/* Water ripple layer — subtle concentric waves from center */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          {/* Soft refractive highlight that gently breathes */}
+          <div
+            className="water-refract absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 35%, transparent 60%)",
+              mixBlendMode: "soft-light",
+            }}
+          />
+          <span className="water-ripple" />
+          <span className="water-ripple water-ripple--2" />
+          <span className="water-ripple water-ripple--3" />
+        </div>
+
         {/* Content overlay */}
         <div className="relative z-10 flex items-end p-12 pb-16">
           <div>
